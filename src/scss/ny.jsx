@@ -10,6 +10,7 @@ export default class Ny extends React.Component {
       <div>
         <div>MyComponent</div>
         <div>Ny comitt</div>
+        <div>Ny comitt</div>
       </div>
     );
   }
