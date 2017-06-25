@@ -40,3 +40,7 @@ dist
 
 # Visual studio Code
 .vscode/settings.json
+
+#Git
+.github
+.git
