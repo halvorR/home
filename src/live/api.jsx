@@ -6,6 +6,8 @@ const Api = React.createClass({
   render () {
     return (
       <div>API for Holter live</div>
+        <div>API for Holter live</div>
+        
     )
   }
 })

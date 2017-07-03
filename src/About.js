@@ -27,6 +27,8 @@ class About extends Component {
                 <li>Mobile: +4797567509</li>
                 <li>Email: <a href="mailto:halvorr91@gmail.com">halvorr91@gmail.com</a></li>
               </ul>
+              <div>API for Holter live</div>
+              
           </div>
         </div>
         );
