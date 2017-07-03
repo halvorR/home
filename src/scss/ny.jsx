@@ -13,7 +13,8 @@ export default class Ny extends React.Component {
         <div>Ny comitt</div>
         <div>Ny comitt</div>
         <div>Ny comitt</div><div>Ny comitt</div>
-        
+          <div>API for Holter live</div>
+
       </div>
     );
   }
