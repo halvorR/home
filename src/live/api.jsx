@@ -7,7 +7,28 @@ const Api = React.createClass({
     return (
       <div>API for Holter live</div>
         <div>API for Holter live</div>
+<<<<<<< HEAD
 
+=======
+          <div>API for Holter live</div>
+            <div>API for Holter live</div>
+              <div>API for Holter live</div>
+                <div>API for Holter live</div>
+                  <div>API for Holter live</div>
+                    <div>API for Holter live</div>
+                      <div>API for Holter live</div>
+                        <div>API for Holter live</div>
+                          <div>API for Holter live</div>
+                            <div>API for Holter live</div>
+                              <div>API for Holter live</div>
+                                <div>API for Holter live</div>
+                                  <div>API for Holter live</div>
+                                    <div>API for Holter live</div>
+                                      <div>API for Holter live</div>
+                                        <div>API for Holter live</div>
+                                          <div>API for Holter live</div>
+                                          
+>>>>>>> test
     )
   }
 })
