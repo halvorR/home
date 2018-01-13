@@ -1,10 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './style.css';
-import {Router, browserHistory} from 'react-router';
-import routes from './routes';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {Provider} from "react-redux";
+import store from './api/store.js';
+
+
+
+import App from './App.jsx';
+import Root from './routes/Root.jsx';
+
+let rootElement = document.createElement("div");
+rootElement.id = 'app';
+document.body.appendChild(rootElement);
 
 ReactDOM.render(
-    <Router history={browserHistory} routes={routes} />,
-  document.getElementById('app')
+  <Provider store={store}>
+    <App>
+      <Router basename={`/`}>
+        <Route path={'*'} exact component={Root} />
+      </Router>
+    </App>
+  </Provider>,
+  rootElement
 );

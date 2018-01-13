@@ -1,7 +1,7 @@
 // Live updates
 import React, { PropTypes } from 'react'
 
-const Landing = React.createClass({
+export default class Landing extends React Component {
   render () {
     return (
       <div>Holter live</div>
@@ -9,6 +9,4 @@ const Landing = React.createClass({
 
     )
   }
-})
-
-export default Landing
+};

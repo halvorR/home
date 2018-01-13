@@ -16,10 +16,13 @@ const common = {
     path: PATHS.build,
     filename: '[name].js'
   },
+  resolve: {
+    extensions: ['.js', '.jsx', '.scss']
+  },
   module: {
     rules: [
       { test: /\.js$/, enforce: 'pre', loader: 'eslint-loader', options: { emitWarning: true } },
-      { test: /\.js$/, loader: 'babel-loader', options: { cacheDirectory: true } },
+      { test: /\.js|.jsx$/, loader: 'babel-loader', options: { cacheDirectory: true } },
       {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader'},
       {test: /\.(woff|woff2)$/, loader: 'url-loader?prefix=font/&limit=5000'},
       {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=application/octet-stream'},
@@ -36,14 +39,49 @@ const common = {
 const production = {
   module: {
     rules: [
+      { test: /\.css$/, use: ['style-loader', 'css-loader?sourceMaps'] },
       {
-        test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          use: 'css-loader',
-          fallback: 'style-loader',
-        }),
+        test: /\.(scss)$/,
+          use: [{
+              loader: 'style-loader'
+          },{
+              loader: 'css-loader',
+              options: {
+                  sourceMap: true,
+                  modules: true,
+                  importLoaders: 1,
+                  localIdentName: '[path]__[local]___[hash:base64:5]'
+              }
+          }, {
+              loader: 'postcss-loader',
+              options: {
+                  sourceMap: true,
+                  plugins: () => [
+                      require('autoprefixer')({ browsers: ['last 2 versions'] })
+                  ]
+              }
+          }, {
+              loader: 'sass-loader',
+              options: {
+                  sourceMap: true,
+                  includePaths: [path.join(__dirname, "src/scss")]
+              }
+          }]
+      },
+      {
+        test: /\.(png|jpg|gif|svg)$/,
+        use: [{
+            loader: 'file-loader',
+            options: {
+                name: '[path][name].[ext]',
+                publicPath: 'src/static/images/',
+                outputPath: (name) => {
+                    return name.replace("/static/images/", "");
+                }
+            }
+        }]
       }
-    ],
+    ]
   },
   plugins: [
     // Output extracted CSS to a file
@@ -73,7 +111,48 @@ const development = {
   devtool: 'cheap-module-eval-source-map',
   module: {
     rules: [
-      { test: /\.css$/, use: ['style-loader', 'css-loader?sourceMaps'] }
+      { test: /\.css$/, use: ['style-loader', 'css-loader?sourceMaps'] },
+      {
+        test: /\.(scss)$/,
+          use: [{
+              loader: 'style-loader'
+          },{
+              loader: 'css-loader',
+              options: {
+                  sourceMap: true,
+                  modules: true,
+                  importLoaders: 1,
+                  localIdentName: '[path]__[local]___[hash:base64:5]'
+              }
+          }, {
+              loader: 'postcss-loader',
+              options: {
+                  sourceMap: true,
+                  plugins: () => [
+                      require('autoprefixer')({ browsers: ['last 2 versions'] })
+                  ]
+              }
+          }, {
+              loader: 'sass-loader',
+              options: {
+                  sourceMap: true,
+                  includePaths: [path.join(__dirname, "src/scss")]
+              }
+          }]
+      },
+      {
+        test: /\.(png|jpg|gif|svg)$/,
+        use: [{
+            loader: 'file-loader',
+            options: {
+                name: '[path][name].[ext]',
+                publicPath: '/src/static/images/',
+                outputPath: (name) => {
+                    return name.replace("src/static/images/", "");
+                }
+            }
+        }]
+    }
     ]
   },
   plugins: [
@@ -86,7 +165,7 @@ const development = {
 module.exports = function(env) {
   process.env.BABEL_ENV = env;
 
-  const config = env == 'production' ? production : development;
+  const config = env === 'production' ? production : development;
 
   return Object.assign(
     {},
