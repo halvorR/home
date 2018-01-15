@@ -1,21 +1,10 @@
-#Repo for [Halvors hjemmeside](https://ronneseth.no) på internett
+# Repo for [min hjemmeside](https://ronneseth.no)
 
-##Halvors hjemmeside
-
-
-# FRA MASTER:
-1. HtmlWebpackPlugin
-2: sdflkjalds
-"æØJSJD"
-
-lkasjdfl
-dsfsadf
-
-asdfasdfa
+## Konstant under utvikling, ETA unknown
 
 
-Nest siste
+### Siste endringer
 
+2. Added webpack
 
-
-siste commit
+1. Initial
